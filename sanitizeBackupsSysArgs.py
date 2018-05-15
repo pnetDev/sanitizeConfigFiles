@@ -1,0 +1,123 @@
+#!/usr/bin/python
+'''
+## CM 10/05/18 Development notes.
+
+This is how the Python code works:
+
+The user runs the script and supplies the path and cmts name eg:
+    ./sanitizeBackupsSysArgs.py /pnetBackup/tftpboot/CMTSs/today/ knock6-
+
+The script generates a list ordered by date of all file names in the path.  dirList[ ]
+The script iterates the dirList and searches for the CMTS name. 
+Another list is generated fileNameList[ ] from the search results. This will be a list of config file names which match the supplied CMTS name. 
+fileNameList[ ] iterated starting with the second item. backupFile
+The first item mainFile becomes the file other files are compared to EG: 
+1 compared with 2 - no difference, 2 added to flagDelete.
+1 compared with 3 - no difference, 3 added to flagDelete.
+1 compared  with 4 - 4 is different, 4 added to flagPreserve.
+4 now becomes the file the rest of the files are compared with
+4 is compared with 5 - no difference, 5  added to flagDelete
+4 is compared with 6 - no difference, 6  added to flagDeleted
+4 is compared with 7 - 7 is different, 7  added to flagPreserve.
+This repeats until the CMTS name has been fully iterated.
+List of flagDelete printed.
+List of flagPreserve printed.
+
+
+Log changes here:
+10/05/18 CM paths for compare files are now correct
+15/05/18 CM Only displays list of files flagged for deletion.
+'''
+
+from stat import S_ISREG, ST_CTIME, ST_MODE
+import os, sys, time, re, filecmp
+
+# Define the lists
+dirList = []
+fileNameList = []
+flagDelete = []
+flagPreserve = []
+
+#Relative or absolute path to the directory
+dir_path = sys.argv[1]
+cmts     = sys.argv[2] 
+
+#all entries in the directory w/ stats
+data = (os.path.join(dir_path, fn) for fn in os.listdir(dir_path))
+data = ((os.stat(path), path) for path in data)
+
+# regular files, insert creation date so we can save the names to the list in the order newest last.
+data = ((stat[ST_CTIME], path)
+	for stat, path in data if S_ISREG(stat[ST_MODE]))
+for cdate, path in sorted(data):
+    	fileName = os.path.basename(path)
+    	dirList.append(fileName)  ## Add the file name to the list dirList
+
+## Now we have the file names saved in the list dirList
+## Next we search for cmts in the list using iteration
+
+for fileName in dirList:
+	if fileName.startswith(cmts):
+		fileNameList.append(fileName)
+		
+###===================================================================##
+
+# Sanitize the files:
+
+## We need to start an iteration of the list starting at 2nd item, because the first item is our starting point
+listLength = len(fileNameList)                                            ## How many files in the list
+#print ""
+#print "listLength: ", listLength
+try:
+	mainFile = fileNameList[0]                                                ## This is our starting point, the first item in the list
+except:
+	print "No files found, script will now exit."
+	print ""
+	quit()
+
+print ""
+#print "Main file: ", mainFile  ## This file will be preserved
+mainFileName = dir_path + mainFile
+flagPreserve.append(mainFileName)
+
+
+#print "dir_path: ",dir_path
+#print ("\n".join(fileNameList))
+#print "\n"
+for backupFile in fileNameList[1:]:                                       ## We start the for at the second item in the list. Python starts counting at zero
+        #print backupFile
+        #print "Now comparing ", mainFile, "with", backupFile
+
+	# We have to specify the full path for the compare function so the script can be in any dir
+	mainFileName = dir_path + mainFile
+	backupFileName = dir_path + backupFile
+	lastFileName = mainFileName						## So we can track the newest file before the change.
+        compare = filecmp.cmp(mainFileName, backupFileName)                     ## This is the Python module for comparing files.
+        # print "Compare result", mainFileName, "with", backupFileName, compare
+        if compare == True:
+                # print "\t", backupFileName, "flagged for deletion"
+                flagDelete.append(backupFileName)
+                #print ""
+        if compare == False:
+                # print "\t", backupFileName, "is different to ", mainFileName
+                # print "\t", backupFileName, "will be preserved and has become the new file to compare to for remaining files"
+		#print ("\n".join(fileNameList))
+                flagPreserve.append(backupFileName)
+                mainFile = backupFileName.split('/')[5]
+                # print ""
+
+#print "-----------------------------------------------"
+#print "           FLAGGED DELETE  REPORT              "
+#print "-----------------------------------------------"
+#print ""
+delQty = len(flagDelete)
+preserveQty = len(flagPreserve)
+#print "\nFor preservation", preserveQty, "files"
+#print ("\n".join(flagPreserve)) ## Print easch list item on seperate line
+
+#print "\nFor deletion", delQty, "files"
+print ("\n".join(flagDelete)) ## Prints each list item on seperate line
+#print ""
+#print "For deletion", delQty, "files"
+print ""
+

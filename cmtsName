@@ -1,0 +1,1592 @@
+!
+tacacs-server timeout 5
+!
+hostname "Knock6_NE_D_Q64"
+!
+!boot system flash C:/4.4.4.13.bin
+!
+access-list 2 permit 192.168.132.0 0.0.3.255 
+access-list 2 deny 10.1.1.0 0.0.0.255 
+access-list 2 permit any 
+access-list 102 deny udp any any eq netbios-ns 
+access-list 102 deny udp any any eq netbios-dgm 
+access-list 102 deny udp any any eq netbios-ss 
+access-list 102 permit ip any any 
+access-list 102 permit udp any any 
+access-list 103 deny udp any any eq netbios-dgm 
+access-list 103 deny udp any any eq netbios-ss 
+access-list 103 deny udp any any eq 427 
+access-list 103 deny tcp any any eq 427 
+access-list 103 deny tcp any any eq 445 
+access-list 103 deny tcp any any eq 548 
+access-list 103 deny udp any any eq 1900 
+access-list 103 deny udp any any eq bootpc 
+access-list 103 deny ip any 224.0.0.0 0.3.255.255 
+access-list 103 deny ip 192.168.144.0 0.0.0.7 any 
+access-list 103 deny ip 31.186.32.0 0.0.0.7 any 
+access-list 103 deny ip 88.151.25.0 0.0.0.7 any 
+access-list 103 deny ip 88.151.27.0 0.0.0.7 any 
+access-list 103 deny ip any host 10.1.1.58 
+access-list 103 permit ip any 192.168.144.0 0.0.0.15 
+access-list 103 deny ip any 192.168.0.0 0.0.255.255 
+access-list 103 permit ip any any 
+access-list 103 permit udp any any 
+access-list 104 deny udp any any eq netbios-ns 
+access-list 104 deny udp any any eq netbios-dgm 
+access-list 104 deny udp any any eq netbios-ss 
+access-list 104 deny udp any any eq 427 
+access-list 104 deny tcp any any eq 427 
+access-list 104 deny tcp any any eq 445 
+access-list 104 deny tcp any any eq 548 
+access-list 104 deny udp any any eq 1900 
+access-list 104 deny ip any 224.0.0.0 0.3.255.255 
+access-list 104 permit ip 192.168.144.0 0.0.0.15 any 
+access-list 104 deny ip 192.168.0.0 0.0.255.255 any 
+access-list 104 permit ip any any 
+access-list 104 permit udp any any 
+access-list 105 deny udp any any eq netbios-ns 
+access-list 105 deny udp any any eq netbios-dgm 
+access-list 105 deny udp any any eq netbios-ss 
+access-list 105 deny udp any any eq 427 
+access-list 105 deny tcp any any eq 427 
+access-list 105 deny tcp any any eq 445 
+access-list 105 deny tcp any any eq 548 
+access-list 105 deny udp any any eq 1900 
+access-list 105 deny udp any any eq bootpc 
+access-list 105 deny ip any 224.0.0.0 0.3.255.255 
+access-list 105 deny ip 192.168.234.0 0.0.0.15 any 
+access-list 105 deny ip 192.168.240.0 0.0.0.7 any 
+access-list 105 permit ip any 192.168.234.0 0.0.0.15 
+access-list 105 permit ip any 192.168.240.0 0.0.0.7 
+access-list 105 deny ip any 192.168.0.0 0.0.255.255 
+access-list 105 permit ip any any 
+access-list 105 permit udp any any 
+access-list 106 deny udp any any eq netbios-ns 
+access-list 106 deny udp any any eq netbios-dgm 
+access-list 106 deny udp any any eq netbios-ss 
+access-list 106 deny udp any any eq 427 
+access-list 106 deny tcp any any eq 427 
+access-list 106 deny tcp any any eq 445 
+access-list 106 deny tcp any any eq 548 
+access-list 106 deny udp any any eq 1900 
+access-list 106 deny ip any 224.0.0.0 0.3.255.255 
+access-list 106 permit ip 192.168.234.0 0.0.0.15 any 
+access-list 106 permit ip 192.168.240.0 0.0.0.7 any 
+access-list 106 deny ip 192.168.0.0 0.0.255.255 any 
+access-list 106 permit ip any any 
+access-list 106 permit udp any any 
+
+!
+snmp-server contact "support@arrisi.com"
+snmp-server location "3871 Lakefield Drive, Suite 300, Suwanee, GA 30024"
+snmp-server engineboots 49
+snmp-server view "default" "iso" included
+snmp-server view "default" "snmpResearch" excluded
+snmp-server view "default" "snmpTargetMIB" excluded
+snmp-server view "default" "snmpNotificationMIB" excluded
+snmp-server view "default" "snmpUsmMIB" excluded
+snmp-server view "default" "snmpVacmMIB" excluded
+snmp-server view "default" "snmpCommunityMIB" excluded
+snmp-server view "default" "enterprises.4115.1.4.3.4.1.7" excluded
+snmp-server group "private" v1 read "default" write "default"
+snmp-server group "private" v2c read "default" write "default"
+snmp-server user "private" "private" v1
+snmp-server user "private" "private" v2c
+snmp-server community-entry "Community1" "private" "private"
+!
+cable modem offline aging-time 86400
+cable modem ucc max-failed-attempts 2
+!
+bridge aging-time 300
+bridge 0
+bridge 1
+bridge 2
+!
+file prompt quiet
+no cli logging
+no cli logging password
+cli logging path /
+cli logging size 1024
+alias scm "show cable modem"
+alias pacman "debug slot 0 sniff"
+alias si0 "show int cab 1/0 modem 0"
+alias sim "show int cab 1/0 modem"
+alias ccm "clear cab modem"
+cli account "hsds"
+cli account "hsds" password "hsds"
+cli account "hsds" enable-password "hsds"
+no cli account "hsds" secret-password
+!
+!
+clock timezone Ireland 0 0
+!
+packetcable authorize vanilla-docsis-mta
+no packetcable multimedia
+packetcable timer multimedia t1 30000
+!
+!
+ip routing
+
+default cm subinterface Cable 1/0.0
+
+default cpe subinterface Cable 1/0.1
+!
+! attached sub-interfaces
+!
+!
+interface FastEthernet 0/1
+  description " "
+ no shutdown
+ ! mac-address 0000.cafe.4e8d
+ duplex full
+ speed 100
+ snmp trap link-status
+ load-interval 300
+ ip address 10.1.1.71 255.255.255.0
+ no allow-ip-only
+ management-access
+ encapsulation dot1q 5 
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface FastEthernet 0/1.1
+ no shutdown
+ bridge-group 1
+ no allow-ip-only
+ no management-access
+ encapsulation dot1q 32 
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface FastEthernet 0/1.2
+ no shutdown
+ bridge-group 0
+ no allow-ip-only
+ no management-access
+ encapsulation dot1q 3 
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface FastEthernet 0/1.4
+ no shutdown
+ bridge-group 2
+ ip address 10.1.254.10 255.255.255.248
+ no allow-ip-only
+ management-access
+ encapsulation dot1q 359 
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+!
+interface Cable 1/0
+ cable utilization-interval 10
+ cable insertion-interval automatic
+ cable sync-interval 10
+ cable ucd-interval 2000
+ cable max-ranging-attempts 16
+ cable sid-verify
+ cable flap-list size 500
+ cable flap-list power-adjust 10
+ cable flap-list aging 259200
+ cable flap-list insertion-time 180
+ description " "
+ no shutdown
+! mac-address 0000.cafe.4e8e
+ load-interval 300
+ snmp trap link-status
+ ip address 192.168.17.1 255.255.255.0
+ no allow-ip-only
+ no management-access
+ no cable source-verify
+ arp-broadcast-echo
+ l2-broadcast-echo
+ l2-multicast-echo
+ ip-broadcast-echo
+ ip-multicast-echo
+ no l2-broadcast-throttle
+ no downstream-dhcp-server-allowed
+ throttle-credits initial 15 running 2
+ ip igmp enable
+ ip dhcp relay
+ ip dhcp relay information option
+ no ip dhcp relay validate renew
+ ip dhcp relay non-broadcast
+ cable helper-address 10.1.1.51
+ no cable dhcp-giaddr
+ cable downstream rate-limit
+ cable downstream admission-control 100
+ no cable downstream admission-limit 
+ cable downstream broadcast service-class default
+ cable downstream multicast service-class default
+ cable downstream multicast admission-limit 90
+ no cable downstream priority-qos
+ cable downstream mac-mode euro-docsis wireless
+ cable downstream symbol-rate 5304000
+ cable downstream channel-id 1
+ cable downstream tsid 0
+ cable downstream channel-width 8mhz
+ cable downstream frequency 279000000
+ cable downstream interleave-depth 12
+ cable downstream modulation 16qam
+ cable downstream power-level 53
+ cable privacy accept-self-signed-certificate
+ no cable privacy check-cert-validity-periods
+ cable privacy kek life-time 604800
+ cable privacy tek life-time 43200
+ no cable shared-secret
+
+ no cable upstream 0 description 
+ no cable upstream 0 shutdown
+ cable upstream 0 snmp trap link-status
+ cable upstream 0 mac-mode euro-docsis 
+
+ cable upstream 0 frequency 22200000
+ cable upstream 0 channel-width 1600000
+ cable upstream 0 power-level -6 fixed
+ cable upstream 0 low-power-offset -60
+ cable upstream 0 high-power-offset 60
+ cable upstream 0 group-id 1
+ cable upstream 0 plant-length 60
+ cable upstream 0 initial-ranging-delay 300
+ cable upstream 0 periodic-maintenance-interval 1000
+ cable upstream 0 short-periodic-maintenance-interval 100
+ cable upstream 0 minimum-unfrag-burst 600
+ cable upstream 0 admission-control 100
+ cable upstream 0 dominant-interval default
+ no cable upstream 0 admission-limit 
+ cable upstream 0 voice-timeout 1
+ no cable upstream 0 priority-qos
+ no cable upstream 0 fixed-receive 
+ no cable upstream 0.0 description 
+ no cable upstream 0.0 shutdown
+ no cable upstream 0.0  snmp trap link-status
+ cable upstream 0.0 channel-id 1
+ cable upstream 0.0 channel-type TDMA
+ cable upstream 0.0 modulation-profile 1
+ no cable upstream 0.0 pre-equalization
+ cable upstream 0.0 minislot-size 4
+ cable upstream 0.0 trigger-index 0
+ cable upstream 0.0 snr-timeconstant 4
+ cable upstream 0.0 mer-timeconstant 8
+ cable upstream 0.0 rng-prm-guard 1
+ cable upstream 0.0 nrng-prm-guard 2
+ cable upstream 0.0 ingress-cancellation tdma-only
+ no cable upstream 0.0 impulse-mitigation 
+ cable upstream 0.0 safe-config 
+ cable upstream 0.0 extended-frequency-detect all-ranging
+ cable upstream 0.0 concatenation
+ cable upstream 0.0 fragmentation 
+ cable upstream 0.0 contention-opp-latency 10000
+ cable upstream 0.0 contention-opps-with-data required
+ cable upstream 0.0 rate-limit
+ no cable upstream 0.0 priority-requests
+ cable upstream 0.0 tdma-minislot-mode ticks-constant
+ cable upstream 0.0 mer-measurement-mode rng-only
+ cable upstream 0.0 data-backoff automatic
+ cable upstream 0.0 range-backoff automatic
+ cable upstream 0.0 status activate
+ no cable upstream 1 description 
+ cable upstream 1 shutdown
+ cable upstream 1 snmp trap link-status
+ cable upstream 1 mac-mode euro-docsis 
+
+ cable upstream 1 frequency 10000000
+ cable upstream 1 channel-width 3200000
+ cable upstream 1 power-level 3 fixed
+ cable upstream 1 low-power-offset -60
+ cable upstream 1 high-power-offset 60
+ cable upstream 1 group-id 2
+ cable upstream 1 plant-length 160
+ cable upstream 1 initial-ranging-delay 300
+ cable upstream 1 periodic-maintenance-interval 1000
+ cable upstream 1 short-periodic-maintenance-interval 100
+ cable upstream 1 minimum-unfrag-burst 600
+ cable upstream 1 admission-control 100
+ cable upstream 1 dominant-interval default
+ no cable upstream 1 admission-limit 
+ cable upstream 1 voice-timeout 1
+ no cable upstream 1 priority-qos
+ no cable upstream 1 fixed-receive 
+ no cable upstream 1.0 description 
+ cable upstream 1.0 shutdown
+ no cable upstream 1.0  snmp trap link-status
+ cable upstream 1.0 channel-id 2
+ cable upstream 1.0 channel-type TDMA
+ cable upstream 1.0 modulation-profile 1
+ no cable upstream 1.0 pre-equalization
+ cable upstream 1.0 minislot-size 4
+ cable upstream 1.0 trigger-index 0
+ cable upstream 1.0 snr-timeconstant 4
+ cable upstream 1.0 mer-timeconstant 8
+ cable upstream 1.0 rng-prm-guard 1
+ cable upstream 1.0 nrng-prm-guard 2
+ cable upstream 1.0 ingress-cancellation tdma-only
+ no cable upstream 1.0 impulse-mitigation 
+ cable upstream 1.0 safe-config 
+ cable upstream 1.0 extended-frequency-detect all-ranging
+ cable upstream 1.0 concatenation
+ cable upstream 1.0 fragmentation 
+ cable upstream 1.0 contention-opp-latency 10000
+ cable upstream 1.0 contention-opps-with-data required
+ cable upstream 1.0 rate-limit
+ no cable upstream 1.0 priority-requests
+ cable upstream 1.0 tdma-minislot-mode ticks-constant
+ cable upstream 1.0 mer-measurement-mode rng-only
+ cable upstream 1.0 data-backoff automatic
+ cable upstream 1.0 range-backoff automatic
+ cable upstream 1.0 status activate
+ ip rip v2-broadcast
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface Cable 1/0.1
+ no shutdown
+ bridge-group 1
+ ip address 172.20.8.6 255.255.252.0
+ ip address 192.168.144.6 255.255.248.0 secondary
+ ip address 10.1.10.68 255.255.255.224 secondary
+ ip address 88.151.27.4 255.255.255.192 secondary
+ ip address 31.186.32.4 255.255.254.0 secondary
+ ip address 88.151.26.5 255.255.255.224 secondary
+ ip address 37.128.196.229 255.255.255.224 secondary
+ ip address 185.11.65.165 255.255.255.224 secondary
+ ip address 31.186.37.5 255.255.255.0 secondary
+ ip address 185.11.66.133 255.255.255.192 secondary
+ ip address 37.128.197.5 255.255.255.128 secondary
+ no allow-ip-only
+ management-access
+ cable source-verify dhcp authoritative
+ dhcp-lq-params leasequery 10 active 13 unassigned 12 trans-time-option 91 timeout 255
+ arp-broadcast-echo
+ no l2-broadcast-echo
+ no l2-multicast-echo
+ no ip-broadcast-echo
+ no ip-multicast-echo
+ no l2-broadcast-throttle
+ no downstream-dhcp-server-allowed
+ throttle-credits initial 15 running 2
+ encapsulation dot1q 32 native
+ no encapsulation dot1q 32 encrypted-multicast
+ ip access-group 103 in
+ ip access-group 104 out
+ ip igmp disable
+ ip dhcp relay
+ ip dhcp relay information option
+ no ip dhcp relay validate renew
+ ip dhcp relay non-broadcast
+ cable helper-address 10.1.1.79
+ cable helper-address 10.1.1.66
+ cable helper-address 172.31.1.66
+ no cable dhcp-giaddr
+ ip rip v2-broadcast
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface Cable 1/0.2
+ no shutdown
+ bridge-group 0
+ ip address 10.1.200.2 255.255.255.0
+ no allow-ip-only
+ management-access
+ no cable source-verify
+ arp-broadcast-echo
+ no l2-broadcast-echo
+ no l2-multicast-echo
+ no ip-broadcast-echo
+ no ip-multicast-echo
+ no l2-broadcast-throttle
+ no downstream-dhcp-server-allowed
+ throttle-credits initial 15 running 2
+ encapsulation dot1q 3 native
+ no encapsulation dot1q 3 encrypted-multicast
+ ip igmp disable
+ no ip dhcp relay
+ no ip dhcp relay information option
+ no ip dhcp relay validate renew
+ ip dhcp relay non-broadcast
+ no cable dhcp-giaddr
+ ip rip v2-broadcast
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface Cable 1/0.3
+ no shutdown
+ ip address 192.168.234.1 255.255.254.0
+ ip address 172.21.20.1 255.255.255.0 secondary
+ no allow-ip-only
+ management-access
+ cable source-verify
+ arp-broadcast-echo
+ no l2-broadcast-echo
+ no l2-multicast-echo
+ no ip-broadcast-echo
+ no ip-multicast-echo
+ no l2-broadcast-throttle
+ no downstream-dhcp-server-allowed
+ throttle-credits initial 15 running 2
+ encapsulation dot1q 31 native
+ no encapsulation dot1q 31 encrypted-multicast
+ ip access-group 105 in
+ ip access-group 106 out
+ ip igmp disable
+ ip dhcp relay
+ ip dhcp relay information option
+ no ip dhcp relay validate renew
+ ip dhcp relay non-broadcast
+ cable helper-address 10.1.1.68
+ cable helper-address 10.1.1.79
+ no cable dhcp-giaddr
+ ip rip v2-broadcast
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface Cable 1/0.4
+ no shutdown
+ bridge-group 2
+ ip address 185.11.65.253 255.255.255.248
+ no allow-ip-only
+ management-access
+ no cable source-verify
+ arp-broadcast-echo
+ l2-broadcast-echo
+ l2-multicast-echo
+ ip-broadcast-echo
+ ip-multicast-echo
+ no l2-broadcast-throttle
+ no downstream-dhcp-server-allowed
+ throttle-credits initial 15 running 2
+ encapsulation dot1q 359 native
+ no encapsulation dot1q 359 encrypted-multicast
+ ip igmp disable
+ no ip dhcp relay
+ no ip dhcp relay information option
+ no ip dhcp relay validate renew
+ ip dhcp relay non-broadcast
+ no cable dhcp-giaddr
+ ip rip v2-broadcast
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+interface Cable 1/0.10
+ no shutdown
+ ip address 192.168.175.25 255.255.255.0
+ no allow-ip-only
+ no management-access
+ cable source-verify
+ arp-broadcast-echo
+ l2-broadcast-echo
+ l2-multicast-echo
+ ip-broadcast-echo
+ ip-multicast-echo
+ no l2-broadcast-throttle
+ no downstream-dhcp-server-allowed
+ throttle-credits initial 15 running 2
+ encapsulation dot1q 10 native
+ no encapsulation dot1q 10 encrypted-multicast
+ ip igmp disable
+ ip dhcp relay
+ ip dhcp relay information option
+ no ip dhcp relay validate renew
+ ip dhcp relay non-broadcast
+ cable helper-address 10.1.1.76
+ no cable dhcp-giaddr
+ ip rip v2-broadcast
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+!
+! unattached subinterfaces
+!
+interface FastEthernet 0/0
+  description " "
+ no shutdown
+ ! mac-address 0000.cafe.4e8c
+ duplex full
+ speed 100
+ snmp trap link-status
+ load-interval 300
+ ip address 192.168.2.22 255.255.255.240
+ no allow-ip-only
+ management-access
+ encapsulation dot1q 150 
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+!
+interface FastEthernet 0/1.10
+ no shutdown
+ no allow-ip-only
+ no management-access
+ encapsulation dot1q 10 
+ no ip directed-broadcast
+ no ip source-verify
+ no ip source-verify subif
+ no ip l2-bg-to-bg-routing
+ ip verify-ip-address-filter
+!
+!
+!
+
+!
+ip default-gateway 10.1.1.29
+ip route 0.0.0.0 0.0.0.0 192.168.2.17
+!
+ip route 192.168.3.0 255.255.255.0 10.1.1.29
+ip route 172.31.0.0 255.255.0.0 10.1.1.1
+!
+!
+arp timeout 3600
+!
+cable modulation-profile 1 request AdvPhy TDMA
+cable modulation-profile 1 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 1 initial AdvPhy TDMA
+cable modulation-profile 1 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 1 station AdvPhy TDMA
+cable modulation-profile 1 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 1 short AdvPhy TDMA
+cable modulation-profile 1 short 6 78 15 8 qpsk scrambler 338 no-diff 84 shortened
+cable modulation-profile 1 long AdvPhy TDMA
+cable modulation-profile 1 long 8 220 0 8 qpsk scrambler 338 no-diff 96 shortened
+cable modulation-profile 2 request AdvPhy TDMA
+cable modulation-profile 2 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 2 initial AdvPhy TDMA
+cable modulation-profile 2 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 2 station AdvPhy TDMA
+cable modulation-profile 2 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 2 short AdvPhy TDMA
+cable modulation-profile 2 short 8 78 8 8 16qam scrambler 338 no-diff 168 shortened
+cable modulation-profile 2 long AdvPhy TDMA
+cable modulation-profile 2 long 10 220 0 8 16qam scrambler 338 no-diff 192 shortened
+cable modulation-profile 3 request AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 3 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 3 initial AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 3 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 3 station AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 3 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 3 short AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 3 short 6 78 15 8 qpsk scrambler 338 no-diff 84 shortened
+cable modulation-profile 3 long AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 3 long 8 220 0 8 qpsk scrambler 338 no-diff 96 shortened
+cable modulation-profile 3 advPhyS AdvPhy TDMA&ATDMA 1 1536
+cable modulation-profile 3 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 3 advPhyS 12 78 6 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 3 advPhyL AdvPhy TDMA&ATDMA 1 1536
+cable modulation-profile 3 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 3 advPhyL 16 220 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 3 advPhyU AdvPhy TDMA&ATDMA 1 1536
+cable modulation-profile 3 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 3 advPhyU 12 78 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 4 request AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 4 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 4 initial AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 4 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 4 station AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 4 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 4 short AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 4 short 8 78 8 8 16qam scrambler 338 no-diff 168 shortened
+cable modulation-profile 4 long AdvPhy TDMA&ATDMA 1 0
+cable modulation-profile 4 long 10 220 0 8 16qam scrambler 338 no-diff 192 shortened
+cable modulation-profile 4 advPhyS AdvPhy TDMA&ATDMA 1 1536
+cable modulation-profile 4 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 4 advPhyS 12 78 6 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 4 advPhyL AdvPhy TDMA&ATDMA 1 1536
+cable modulation-profile 4 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 4 advPhyL 16 220 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 4 advPhyU AdvPhy TDMA&ATDMA 1 1536
+cable modulation-profile 4 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 4 advPhyU 12 78 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 5 request AdvPhy ATDMA 1 1536
+cable modulation-profile 5 request AdvPhy preamble-type qpsk0
+cable modulation-profile 5 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 5 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 5 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 5 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 5 station AdvPhy ATDMA 1 1536
+cable modulation-profile 5 station AdvPhy preamble-type qpsk0
+cable modulation-profile 5 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 5 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 5 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 5 advPhyS 12 78 6 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 5 advPhyL AdvPhy ATDMA 1 1536
+cable modulation-profile 5 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 5 advPhyL 16 220 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 5 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 5 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 5 advPhyU 12 78 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 6 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 6 request AdvPhy preamble-type qpsk0
+cable modulation-profile 6 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 6 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 6 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 6 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 6 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 6 station AdvPhy preamble-type qpsk0
+cable modulation-profile 6 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 6 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 6 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 6 advPhyS 12 78 10 0 64qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 6 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 6 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 6 advPhyL 16 220 0 0 64qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 6 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 6 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 6 advPhyU 12 78 0 0 64qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 11 request AdvPhy TDMA
+cable modulation-profile 11 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 11 initial AdvPhy TDMA
+cable modulation-profile 11 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 11 station AdvPhy TDMA
+cable modulation-profile 11 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 11 short AdvPhy TDMA
+cable modulation-profile 11 short 8 78 15 8 qpsk scrambler 338 no-diff 84 shortened
+cable modulation-profile 11 long AdvPhy TDMA
+cable modulation-profile 11 long 10 150 0 8 qpsk scrambler 338 no-diff 200 shortened
+cable modulation-profile 12 request AdvPhy TDMA
+cable modulation-profile 12 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 12 initial AdvPhy TDMA
+cable modulation-profile 12 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 12 station AdvPhy TDMA
+cable modulation-profile 12 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 12 short AdvPhy TDMA
+cable modulation-profile 12 short 6 78 15 8 qpsk scrambler 338 no-diff 84 shortened
+cable modulation-profile 12 long AdvPhy TDMA
+cable modulation-profile 12 long 8 220 0 8 qpsk scrambler 338 no-diff 96 shortened
+cable modulation-profile 13 request AdvPhy TDMA
+cable modulation-profile 13 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 13 initial AdvPhy TDMA
+cable modulation-profile 13 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 13 station AdvPhy TDMA
+cable modulation-profile 13 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 13 short AdvPhy TDMA
+cable modulation-profile 13 short 6 78 15 8 qpsk scrambler 338 no-diff 84 shortened
+cable modulation-profile 13 long AdvPhy TDMA
+cable modulation-profile 13 long 4 220 0 8 qpsk scrambler 338 no-diff 96 shortened
+cable modulation-profile 14 request AdvPhy TDMA
+cable modulation-profile 14 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 14 initial AdvPhy TDMA
+cable modulation-profile 14 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 14 station AdvPhy TDMA
+cable modulation-profile 14 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 14 short AdvPhy TDMA
+cable modulation-profile 14 short 8 78 10 8 16qam scrambler 338 no-diff 168 shortened
+cable modulation-profile 14 long AdvPhy TDMA
+cable modulation-profile 14 long 10 150 0 8 16qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 15 request AdvPhy TDMA
+cable modulation-profile 15 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 15 initial AdvPhy TDMA
+cable modulation-profile 15 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 15 station AdvPhy TDMA
+cable modulation-profile 15 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 15 short AdvPhy TDMA
+cable modulation-profile 15 short 8 78 10 8 16qam scrambler 338 no-diff 168 shortened
+cable modulation-profile 15 long AdvPhy TDMA
+cable modulation-profile 15 long 10 220 0 8 16qam scrambler 338 no-diff 192 shortened
+cable modulation-profile 16 request AdvPhy TDMA
+cable modulation-profile 16 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 16 initial AdvPhy TDMA
+cable modulation-profile 16 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 16 station AdvPhy TDMA
+cable modulation-profile 16 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 16 short AdvPhy TDMA
+cable modulation-profile 16 short 8 78 10 8 16qam scrambler 338 no-diff 168 shortened
+cable modulation-profile 16 long AdvPhy TDMA
+cable modulation-profile 16 long 5 240 0 8 16qam scrambler 338 no-diff 192 shortened
+cable modulation-profile 21 request AdvPhy ATDMA 1 1536
+cable modulation-profile 21 request AdvPhy preamble-type qpsk1
+cable modulation-profile 21 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 21 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 21 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 21 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 21 station AdvPhy ATDMA 1 1536
+cable modulation-profile 21 station AdvPhy preamble-type qpsk1
+cable modulation-profile 21 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 21 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 21 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 21 advPhyS 12 78 12 8 qpsk scrambler 338 no-diff 200 shortened
+cable modulation-profile 21 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 21 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 21 advPhyL 16 150 0 8 qpsk scrambler 338 no-diff 304 shortened
+cable modulation-profile 21 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 21 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 21 advPhyU 12 78 0 8 qpsk scrambler 338 no-diff 304 shortened
+cable modulation-profile 22 request AdvPhy ATDMA 1 1536
+cable modulation-profile 22 request AdvPhy preamble-type qpsk1
+cable modulation-profile 22 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 22 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 22 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 22 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 22 station AdvPhy ATDMA 1 1536
+cable modulation-profile 22 station AdvPhy preamble-type qpsk1
+cable modulation-profile 22 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 22 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 22 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 22 advPhyS 12 100 12 8 qpsk scrambler 338 no-diff 104 shortened
+cable modulation-profile 22 advPhyL AdvPhy ATDMA 5 1500
+cable modulation-profile 22 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 22 advPhyL 5 220 0 8 qpsk scrambler 338 no-diff 104 shortened
+cable modulation-profile 22 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 22 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 22 advPhyU 12 78 0 8 qpsk scrambler 338 no-diff 104 shortened
+cable modulation-profile 23 request AdvPhy ATDMA 1 1536
+cable modulation-profile 23 request AdvPhy preamble-type qpsk1
+cable modulation-profile 23 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 23 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 23 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 23 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 23 station AdvPhy ATDMA 1 1536
+cable modulation-profile 23 station AdvPhy preamble-type qpsk1
+cable modulation-profile 23 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 23 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 23 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 23 advPhyS 12 100 8 8 8qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 23 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 23 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 23 advPhyL 16 150 0 8 8qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 23 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 23 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 23 advPhyU 12 100 0 8 8qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 24 request AdvPhy ATDMA 1 1536
+cable modulation-profile 24 request AdvPhy preamble-type qpsk1
+cable modulation-profile 24 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 24 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 24 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 24 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 24 station AdvPhy ATDMA 1 1536
+cable modulation-profile 24 station AdvPhy preamble-type qpsk1
+cable modulation-profile 24 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 24 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 24 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 24 advPhyS 12 78 8 8 8qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 24 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 24 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 24 advPhyL 5 220 0 8 8qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 24 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 24 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 24 advPhyU 12 78 0 8 8qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 25 request AdvPhy ATDMA 1 1536
+cable modulation-profile 25 request AdvPhy preamble-type qpsk1
+cable modulation-profile 25 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 25 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 25 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 25 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 25 station AdvPhy ATDMA 1 1536
+cable modulation-profile 25 station AdvPhy preamble-type qpsk1
+cable modulation-profile 25 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 25 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 25 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 25 advPhyS 12 100 13 8 16qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 25 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 25 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 25 advPhyL 16 150 0 8 16qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 25 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 25 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 25 advPhyU 12 78 0 8 16qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 26 request AdvPhy ATDMA 1 1536
+cable modulation-profile 26 request AdvPhy preamble-type qpsk1
+cable modulation-profile 26 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 26 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 26 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 26 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 26 station AdvPhy ATDMA 1 1536
+cable modulation-profile 26 station AdvPhy preamble-type qpsk1
+cable modulation-profile 26 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 26 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 26 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 26 advPhyS 12 78 13 8 16qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 26 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 26 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 26 advPhyL 5 220 0 8 16qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 26 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 26 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 26 advPhyU 12 78 0 8 16qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 27 request AdvPhy ATDMA 1 1536
+cable modulation-profile 27 request AdvPhy preamble-type qpsk1
+cable modulation-profile 27 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 27 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 27 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 27 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 27 station AdvPhy ATDMA 1 1536
+cable modulation-profile 27 station AdvPhy preamble-type qpsk1
+cable modulation-profile 27 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 27 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 27 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 27 advPhyS 12 78 12 8 32qam scrambler 338 no-diff 200 shortened
+cable modulation-profile 27 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 27 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 27 advPhyL 16 150 0 8 32qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 27 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 27 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 27 advPhyU 12 78 0 8 32qam scrambler 338 no-diff 200 shortened
+cable modulation-profile 28 request AdvPhy ATDMA 1 1536
+cable modulation-profile 28 request AdvPhy preamble-type qpsk1
+cable modulation-profile 28 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 28 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 28 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 28 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 28 station AdvPhy ATDMA 1 1536
+cable modulation-profile 28 station AdvPhy preamble-type qpsk1
+cable modulation-profile 28 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 28 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 28 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 28 advPhyS 12 78 12 8 32qam scrambler 338 no-diff 152 shortened
+cable modulation-profile 28 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 28 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 28 advPhyL 5 220 0 8 32qam scrambler 338 no-diff 200 shortened
+cable modulation-profile 28 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 28 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 28 advPhyU 12 78 0 8 32qam scrambler 338 no-diff 152 shortened
+cable modulation-profile 29 request AdvPhy ATDMA 1 1536
+cable modulation-profile 29 request AdvPhy preamble-type qpsk1
+cable modulation-profile 29 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 29 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 29 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 29 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 29 station AdvPhy ATDMA 1 1536
+cable modulation-profile 29 station AdvPhy preamble-type qpsk1
+cable modulation-profile 29 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 29 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 29 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 29 advPhyS 12 78 11 8 64qam scrambler 338 no-diff 152 shortened
+cable modulation-profile 29 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 29 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 29 advPhyL 16 220 0 8 64qam scrambler 338 no-diff 304 shortened
+cable modulation-profile 29 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 29 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 29 advPhyU 12 78 0 8 64qam scrambler 338 no-diff 152 shortened
+cable modulation-profile 30 request AdvPhy ATDMA 1 1536
+cable modulation-profile 30 request AdvPhy preamble-type qpsk1
+cable modulation-profile 30 request 0 16 0 8 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 30 initial AdvPhy ATDMA 1 1536
+cable modulation-profile 30 initial AdvPhy preamble-type qpsk1
+cable modulation-profile 30 initial 5 34 0 48 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 30 station AdvPhy ATDMA 1 1536
+cable modulation-profile 30 station AdvPhy preamble-type qpsk1
+cable modulation-profile 30 station 5 34 0 48 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 30 advPhyS AdvPhy ATDMA 1 1536
+cable modulation-profile 30 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 30 advPhyS 12 78 11 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 30 advPhyL AdvPhy ATDMA 8 1504
+cable modulation-profile 30 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 30 advPhyL 5 220 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 30 advPhyU AdvPhy ATDMA 1 1536
+cable modulation-profile 30 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 30 advPhyU 12 78 0 8 64qam scrambler 338 no-diff 104 shortened
+cable modulation-profile 31 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 31 request AdvPhy preamble-type qpsk0
+cable modulation-profile 31 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 31 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 31 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 31 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 31 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 31 station AdvPhy preamble-type qpsk0
+cable modulation-profile 31 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 31 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 31 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 31 advPhyS 12 78 10 0 qpsk scrambler 338 no-diff 120 shortened
+cable modulation-profile 31 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 31 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 31 advPhyL 16 150 0 0 qpsk scrambler 338 no-diff 120 shortened
+cable modulation-profile 31 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 31 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 31 advPhyU 12 78 0 0 qpsk scrambler 338 no-diff 120 shortened
+cable modulation-profile 32 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 32 request AdvPhy preamble-type qpsk0
+cable modulation-profile 32 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 32 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 32 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 32 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 32 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 32 station AdvPhy preamble-type qpsk0
+cable modulation-profile 32 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 32 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 32 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 32 advPhyS 12 100 10 0 qpsk scrambler 338 no-diff 64 shortened
+cable modulation-profile 32 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 32 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 32 advPhyL 5 220 0 0 qpsk scrambler 338 no-diff 64 shortened
+cable modulation-profile 32 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 32 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 32 advPhyU 12 78 0 0 qpsk scrambler 338 no-diff 64 shortened
+cable modulation-profile 33 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 33 request AdvPhy preamble-type qpsk0
+cable modulation-profile 33 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 33 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 33 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 33 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 33 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 33 station AdvPhy preamble-type qpsk0
+cable modulation-profile 33 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 33 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 33 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 33 advPhyS 12 100 10 0 8qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 33 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 33 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 33 advPhyL 16 150 0 0 8qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 33 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 33 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 33 advPhyU 12 100 0 0 8qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 34 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 34 request AdvPhy preamble-type qpsk0
+cable modulation-profile 34 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 34 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 34 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 34 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 34 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 34 station AdvPhy preamble-type qpsk0
+cable modulation-profile 34 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 34 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 34 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 34 advPhyS 12 78 10 0 8qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 34 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 34 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 34 advPhyL 5 220 0 0 8qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 34 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 34 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 34 advPhyU 12 78 0 0 8qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 35 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 35 request AdvPhy preamble-type qpsk0
+cable modulation-profile 35 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 35 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 35 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 35 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 35 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 35 station AdvPhy preamble-type qpsk0
+cable modulation-profile 35 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 35 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 35 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 35 advPhyS 12 100 10 0 16qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 35 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 35 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 35 advPhyL 16 150 0 0 16qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 35 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 35 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 35 advPhyU 12 100 0 0 16qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 36 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 36 request AdvPhy preamble-type qpsk0
+cable modulation-profile 36 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 36 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 36 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 36 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 36 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 36 station AdvPhy preamble-type qpsk0
+cable modulation-profile 36 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 36 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 36 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 36 advPhyS 12 78 10 0 16qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 36 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 36 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 36 advPhyL 5 220 0 0 16qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 36 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 36 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 36 advPhyU 12 78 0 0 16qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 37 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 37 request AdvPhy preamble-type qpsk0
+cable modulation-profile 37 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 37 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 37 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 37 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 37 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 37 station AdvPhy preamble-type qpsk0
+cable modulation-profile 37 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 37 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 37 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 37 advPhyS 12 100 10 0 32qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 37 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 37 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 37 advPhyL 16 150 0 0 32qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 37 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 37 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 37 advPhyU 12 100 0 0 32qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 38 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 38 request AdvPhy preamble-type qpsk0
+cable modulation-profile 38 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 38 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 38 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 38 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 38 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 38 station AdvPhy preamble-type qpsk0
+cable modulation-profile 38 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 38 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 38 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 38 advPhyS 12 78 10 0 32qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 38 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 38 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 38 advPhyL 5 220 0 0 32qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 38 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 38 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 38 advPhyU 12 78 0 0 32qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 39 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 39 request AdvPhy preamble-type qpsk0
+cable modulation-profile 39 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 39 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 39 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 39 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 39 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 39 station AdvPhy preamble-type qpsk0
+cable modulation-profile 39 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 39 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 39 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 39 advPhyS 12 78 10 0 64qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 39 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 39 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 39 advPhyL 16 150 0 0 64qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 39 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 39 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 39 advPhyU 12 78 0 0 64qam scrambler 338 no-diff 128 shortened
+cable modulation-profile 40 request AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 40 request AdvPhy preamble-type qpsk0
+cable modulation-profile 40 request 0 16 0 0 qpsk scrambler 338 no-diff 64 fixed
+cable modulation-profile 40 initial AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 40 initial AdvPhy preamble-type qpsk0
+cable modulation-profile 40 initial 5 34 0 0 qpsk scrambler 338 no-diff 640 fixed
+cable modulation-profile 40 station AdvPhy SCDMA no-trell 5 no-spr 2
+cable modulation-profile 40 station AdvPhy preamble-type qpsk0
+cable modulation-profile 40 station 5 34 0 0 qpsk scrambler 338 no-diff 384 fixed
+cable modulation-profile 40 advPhyS AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 40 advPhyS AdvPhy preamble-type qpsk1
+cable modulation-profile 40 advPhyS 12 78 10 0 64qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 40 advPhyL AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 40 advPhyL AdvPhy preamble-type qpsk1
+cable modulation-profile 40 advPhyL 16 220 0 0 64qam scrambler 338 no-diff 64 shortened
+cable modulation-profile 40 advPhyU AdvPhy SCDMA no-trell 5 spr 2
+cable modulation-profile 40 advPhyU AdvPhy preamble-type qpsk1
+cable modulation-profile 40 advPhyU 12 78 0 0 64qam scrambler 338 no-diff 64 shortened
+!
+cable frequency-band 1 1 start 1800000 stop 68200000
+cable frequency-band 2 1 start 1800000 stop 68200000
+cable frequency-band 3 1 start 1800000 stop 68200000
+cable frequency-band 4 1 start 1800000 stop 68200000
+cable frequency-band 5 1 start 1800000 stop 68200000
+cable frequency-band 6 1 start 1800000 stop 68200000
+!
+no cable group 1 load-balancing
+!no cable group 1 description
+no cable group 2 load-balancing
+!no cable group 2 description
+no cable group 3 load-balancing
+!no cable group 3 description
+no cable group 4 load-balancing
+!no cable group 4 description
+no cable group 5 load-balancing
+!no cable group 5 description
+no cable group 6 load-balancing
+!no cable group 6 description
+!
+!
+!
+no logging syslog host
+logging thresh none
+logging thresh interval 1
+logging severity 1 local no-trap no-sys no-vol
+logging severity 2 local no-trap no-sys no-vol
+logging severity 3 local trap sys no-vol
+logging severity 4 no-local trap sys vol
+logging severity 5 no-local trap sys vol
+logging severity 6 no-local trap sys vol
+logging severity 7 no-local no-trap no-sys no-vol
+logging severity 8 no-local no-trap no-sys no-vol
+logging trap-control 0x0
+elog off
+elog size 50
+logging console 4
+no logging monitor
+!
+cable service class "FUPds" priority  0
+!cable service class "FUPds" sched-type <other>
+cable service class "FUPds" downstream
+cable service class "FUPds" activity-timeout  0
+cable service class "FUPds" admission-timeout  200
+cable service class "FUPds" grant-interval  0
+cable service class "FUPds" grant-jitter  0
+cable service class "FUPds" grant-size  0
+cable service class "FUPds" grants-per-interval  0
+cable service class "FUPds" max-burst  3044
+cable service class "FUPds" max-concat-burst  0
+cable service class "FUPds" max-latency  0
+cable service class "FUPds" max-rate  512000
+cable service class "FUPds" min-packet-size  64
+cable service class "FUPds" min-rate  0
+cable service class "FUPds" poll-interval  0
+cable service class "FUPds" poll-jitter  0
+cable service class "FUPds" req-trans-policy  0x0
+cable service class "FUPds" tos-overwrite  0x0 0x0
+cable service class "FUPds" status activate
+cable service class "FUPus" priority  0
+cable service class "FUPus" sched-type best-effort
+cable service class "FUPus" upstream
+cable service class "FUPus" activity-timeout  0
+cable service class "FUPus" admission-timeout  200
+cable service class "FUPus" grant-interval  0
+cable service class "FUPus" grant-jitter  0
+cable service class "FUPus" grant-size  0
+cable service class "FUPus" grants-per-interval  0
+cable service class "FUPus" max-burst  3044
+cable service class "FUPus" max-concat-burst  1522
+cable service class "FUPus" max-latency  0
+cable service class "FUPus" max-rate  128000
+cable service class "FUPus" min-packet-size  64
+cable service class "FUPus" min-rate  0
+cable service class "FUPus" poll-interval  250
+cable service class "FUPus" poll-jitter  125
+cable service class "FUPus" req-trans-policy  0x0
+cable service class "FUPus" tos-overwrite  0xff 0x0
+cable service class "FUPus" status activate
+cable service class "testds" priority  0
+!cable service class "testds" sched-type <other>
+cable service class "testds" downstream
+cable service class "testds" activity-timeout  0
+cable service class "testds" admission-timeout  200
+cable service class "testds" grant-interval  0
+cable service class "testds" grant-jitter  0
+cable service class "testds" grant-size  0
+cable service class "testds" grants-per-interval  0
+cable service class "testds" max-burst  3044
+cable service class "testds" max-concat-burst  0
+cable service class "testds" max-latency  0
+cable service class "testds" max-rate  10240000
+cable service class "testds" min-packet-size  64
+cable service class "testds" min-rate  0
+cable service class "testds" poll-interval  0
+cable service class "testds" poll-jitter  0
+cable service class "testds" req-trans-policy  0x0
+cable service class "testds" tos-overwrite  0x0 0x0
+cable service class "testds" status activate
+cable service class "testus" priority  0
+cable service class "testus" sched-type best-effort
+cable service class "testus" upstream
+cable service class "testus" activity-timeout  0
+cable service class "testus" admission-timeout  200
+cable service class "testus" grant-interval  0
+cable service class "testus" grant-jitter  0
+cable service class "testus" grant-size  0
+cable service class "testus" grants-per-interval  0
+cable service class "testus" max-burst  3044
+cable service class "testus" max-concat-burst  1522
+cable service class "testus" max-latency  0
+cable service class "testus" max-rate  2048000
+cable service class "testus" min-packet-size  64
+cable service class "testus" min-rate  0
+cable service class "testus" poll-interval  250
+cable service class "testus" poll-jitter  125
+cable service class "testus" req-trans-policy  0x0
+cable service class "testus" tos-overwrite  0xff 0x0
+cable service class "testus" status activate
+cable service class "bizmaxds" priority  0
+!cable service class "bizmaxds" sched-type <other>
+cable service class "bizmaxds" downstream
+cable service class "bizmaxds" activity-timeout  0
+cable service class "bizmaxds" admission-timeout  200
+cable service class "bizmaxds" grant-interval  0
+cable service class "bizmaxds" grant-jitter  0
+cable service class "bizmaxds" grant-size  0
+cable service class "bizmaxds" grants-per-interval  0
+cable service class "bizmaxds" max-burst  3044
+cable service class "bizmaxds" max-concat-burst  0
+cable service class "bizmaxds" max-latency  0
+cable service class "bizmaxds" max-rate  6096000
+cable service class "bizmaxds" min-packet-size  64
+cable service class "bizmaxds" min-rate  0
+cable service class "bizmaxds" poll-interval  0
+cable service class "bizmaxds" poll-jitter  0
+cable service class "bizmaxds" req-trans-policy  0x0
+cable service class "bizmaxds" tos-overwrite  0x0 0x0
+cable service class "bizmaxds" status activate
+cable service class "bizmaxus" priority  0
+cable service class "bizmaxus" sched-type best-effort
+cable service class "bizmaxus" upstream
+cable service class "bizmaxus" activity-timeout  0
+cable service class "bizmaxus" admission-timeout  200
+cable service class "bizmaxus" grant-interval  0
+cable service class "bizmaxus" grant-jitter  0
+cable service class "bizmaxus" grant-size  0
+cable service class "bizmaxus" grants-per-interval  0
+cable service class "bizmaxus" max-burst  3044
+cable service class "bizmaxus" max-concat-burst  1522
+cable service class "bizmaxus" max-latency  0
+cable service class "bizmaxus" max-rate  1024000
+cable service class "bizmaxus" min-packet-size  64
+cable service class "bizmaxus" min-rate  0
+cable service class "bizmaxus" poll-interval  250
+cable service class "bizmaxus" poll-jitter  125
+cable service class "bizmaxus" req-trans-policy  0x0
+cable service class "bizmaxus" tos-overwrite  0xff 0x0
+cable service class "bizmaxus" status activate
+cable service class "resmaxds" priority  0
+!cable service class "resmaxds" sched-type <other>
+cable service class "resmaxds" downstream
+cable service class "resmaxds" activity-timeout  0
+cable service class "resmaxds" admission-timeout  200
+cable service class "resmaxds" grant-interval  0
+cable service class "resmaxds" grant-jitter  0
+cable service class "resmaxds" grant-size  0
+cable service class "resmaxds" grants-per-interval  0
+cable service class "resmaxds" max-burst  3044
+cable service class "resmaxds" max-concat-burst  0
+cable service class "resmaxds" max-latency  0
+cable service class "resmaxds" max-rate  4096000
+cable service class "resmaxds" min-packet-size  64
+cable service class "resmaxds" min-rate  0
+cable service class "resmaxds" poll-interval  0
+cable service class "resmaxds" poll-jitter  0
+cable service class "resmaxds" req-trans-policy  0x0
+cable service class "resmaxds" tos-overwrite  0x0 0x0
+cable service class "resmaxds" status activate
+cable service class "resmaxus" priority  0
+cable service class "resmaxus" sched-type best-effort
+cable service class "resmaxus" upstream
+cable service class "resmaxus" activity-timeout  0
+cable service class "resmaxus" admission-timeout  200
+cable service class "resmaxus" grant-interval  0
+cable service class "resmaxus" grant-jitter  0
+cable service class "resmaxus" grant-size  0
+cable service class "resmaxus" grants-per-interval  0
+cable service class "resmaxus" max-burst  3044
+cable service class "resmaxus" max-concat-burst  1522
+cable service class "resmaxus" max-latency  0
+cable service class "resmaxus" max-rate  512000
+cable service class "resmaxus" min-packet-size  64
+cable service class "resmaxus" min-rate  0
+cable service class "resmaxus" poll-interval  250
+cable service class "resmaxus" poll-jitter  125
+cable service class "resmaxus" req-trans-policy  0x0
+cable service class "resmaxus" tos-overwrite  0xff 0x0
+cable service class "resmaxus" status activate
+!cable service class "Multicast" priority  0
+!cable service class "Multicast" sched-type best-effort
+!cable service class "Multicast" downstream
+!cable service class "Multicast" activity-timeout  0
+!cable service class "Multicast" admission-timeout  0
+!cable service class "Multicast" grant-interval  0
+!cable service class "Multicast" grant-jitter  0
+!cable service class "Multicast" grant-size  0
+!cable service class "Multicast" grants-per-interval  0
+!cable service class "Multicast" max-burst  0
+!cable service class "Multicast" max-concat-burst  0
+!cable service class "Multicast" max-latency  0
+!cable service class "Multicast" max-rate  0
+!cable service class "Multicast" min-packet-size  0
+!cable service class "Multicast" min-rate  0
+!cable service class "Multicast" poll-interval  0
+!cable service class "Multicast" poll-jitter  0
+!cable service class "Multicast" req-trans-policy  0x0
+!cable service class "Multicast" tos-overwrite  0x0 0x0
+!cable service class "Multicast" status activate
+cable service class "bizplusds" priority  0
+!cable service class "bizplusds" sched-type <other>
+cable service class "bizplusds" downstream
+cable service class "bizplusds" activity-timeout  0
+cable service class "bizplusds" admission-timeout  200
+cable service class "bizplusds" grant-interval  0
+cable service class "bizplusds" grant-jitter  0
+cable service class "bizplusds" grant-size  0
+cable service class "bizplusds" grants-per-interval  0
+cable service class "bizplusds" max-burst  3044
+cable service class "bizplusds" max-concat-burst  0
+cable service class "bizplusds" max-latency  0
+cable service class "bizplusds" max-rate  4096000
+cable service class "bizplusds" min-packet-size  64
+cable service class "bizplusds" min-rate  0
+cable service class "bizplusds" poll-interval  0
+cable service class "bizplusds" poll-jitter  0
+cable service class "bizplusds" req-trans-policy  0x0
+cable service class "bizplusds" tos-overwrite  0x0 0x0
+cable service class "bizplusds" status activate
+cable service class "bizplusus" priority  0
+cable service class "bizplusus" sched-type best-effort
+cable service class "bizplusus" upstream
+cable service class "bizplusus" activity-timeout  0
+cable service class "bizplusus" admission-timeout  200
+cable service class "bizplusus" grant-interval  0
+cable service class "bizplusus" grant-jitter  0
+cable service class "bizplusus" grant-size  0
+cable service class "bizplusus" grants-per-interval  0
+cable service class "bizplusus" max-burst  3044
+cable service class "bizplusus" max-concat-burst  1522
+cable service class "bizplusus" max-latency  0
+cable service class "bizplusus" max-rate  1024000
+cable service class "bizplusus" min-packet-size  64
+cable service class "bizplusus" min-rate  0
+cable service class "bizplusus" poll-interval  250
+cable service class "bizplusus" poll-jitter  125
+cable service class "bizplusus" req-trans-policy  0x0
+cable service class "bizplusus" tos-overwrite  0xff 0x0
+cable service class "bizplusus" status activate
+cable service class "resplusds" priority  0
+!cable service class "resplusds" sched-type <other>
+cable service class "resplusds" downstream
+cable service class "resplusds" activity-timeout  0
+cable service class "resplusds" admission-timeout  200
+cable service class "resplusds" grant-interval  0
+cable service class "resplusds" grant-jitter  0
+cable service class "resplusds" grant-size  0
+cable service class "resplusds" grants-per-interval  0
+cable service class "resplusds" max-burst  3044
+cable service class "resplusds" max-concat-burst  0
+cable service class "resplusds" max-latency  0
+cable service class "resplusds" max-rate  3072000
+cable service class "resplusds" min-packet-size  64
+cable service class "resplusds" min-rate  0
+cable service class "resplusds" poll-interval  0
+cable service class "resplusds" poll-jitter  0
+cable service class "resplusds" req-trans-policy  0x0
+cable service class "resplusds" tos-overwrite  0x0 0x0
+cable service class "resplusds" status activate
+cable service class "resplusus" priority  0
+cable service class "resplusus" sched-type best-effort
+cable service class "resplusus" upstream
+cable service class "resplusus" activity-timeout  0
+cable service class "resplusus" admission-timeout  200
+cable service class "resplusus" grant-interval  0
+cable service class "resplusus" grant-jitter  0
+cable service class "resplusus" grant-size  0
+cable service class "resplusus" grants-per-interval  0
+cable service class "resplusus" max-burst  3044
+cable service class "resplusus" max-concat-burst  1522
+cable service class "resplusus" max-latency  0
+cable service class "resplusus" max-rate  512000
+cable service class "resplusus" min-packet-size  64
+cable service class "resplusus" min-rate  0
+cable service class "resplusus" poll-interval  250
+cable service class "resplusus" poll-jitter  125
+cable service class "resplusus" req-trans-policy  0x0
+cable service class "resplusus" tos-overwrite  0xff 0x0
+cable service class "resplusus" status activate
+cable service class "bizbasicds" priority  0
+!cable service class "bizbasicds" sched-type <other>
+cable service class "bizbasicds" downstream
+cable service class "bizbasicds" activity-timeout  0
+cable service class "bizbasicds" admission-timeout  200
+cable service class "bizbasicds" grant-interval  0
+cable service class "bizbasicds" grant-jitter  0
+cable service class "bizbasicds" grant-size  0
+cable service class "bizbasicds" grants-per-interval  0
+cable service class "bizbasicds" max-burst  3044
+cable service class "bizbasicds" max-concat-burst  0
+cable service class "bizbasicds" max-latency  0
+cable service class "bizbasicds" max-rate  3072000
+cable service class "bizbasicds" min-packet-size  64
+cable service class "bizbasicds" min-rate  0
+cable service class "bizbasicds" poll-interval  0
+cable service class "bizbasicds" poll-jitter  0
+cable service class "bizbasicds" req-trans-policy  0x0
+cable service class "bizbasicds" tos-overwrite  0x0 0x0
+cable service class "bizbasicds" status activate
+cable service class "bizbasicus" priority  0
+cable service class "bizbasicus" sched-type best-effort
+cable service class "bizbasicus" upstream
+cable service class "bizbasicus" activity-timeout  0
+cable service class "bizbasicus" admission-timeout  200
+cable service class "bizbasicus" grant-interval  0
+cable service class "bizbasicus" grant-jitter  0
+cable service class "bizbasicus" grant-size  0
+cable service class "bizbasicus" grants-per-interval  0
+cable service class "bizbasicus" max-burst  3044
+cable service class "bizbasicus" max-concat-burst  1522
+cable service class "bizbasicus" max-latency  0
+cable service class "bizbasicus" max-rate  1024000
+cable service class "bizbasicus" min-packet-size  64
+cable service class "bizbasicus" min-rate  0
+cable service class "bizbasicus" poll-interval  250
+cable service class "bizbasicus" poll-jitter  125
+cable service class "bizbasicus" req-trans-policy  0x0
+cable service class "bizbasicus" tos-overwrite  0xff 0x0
+cable service class "bizbasicus" status activate
+cable service class "resbasicds" priority  0
+!cable service class "resbasicds" sched-type <other>
+cable service class "resbasicds" downstream
+cable service class "resbasicds" activity-timeout  0
+cable service class "resbasicds" admission-timeout  200
+cable service class "resbasicds" grant-interval  0
+cable service class "resbasicds" grant-jitter  0
+cable service class "resbasicds" grant-size  0
+cable service class "resbasicds" grants-per-interval  0
+cable service class "resbasicds" max-burst  3044
+cable service class "resbasicds" max-concat-burst  0
+cable service class "resbasicds" max-latency  0
+cable service class "resbasicds" max-rate  2048000
+cable service class "resbasicds" min-packet-size  64
+cable service class "resbasicds" min-rate  0
+cable service class "resbasicds" poll-interval  0
+cable service class "resbasicds" poll-jitter  0
+cable service class "resbasicds" req-trans-policy  0x0
+cable service class "resbasicds" tos-overwrite  0x0 0x0
+cable service class "resbasicds" status activate
+cable service class "resbasicus" priority  0
+cable service class "resbasicus" sched-type best-effort
+cable service class "resbasicus" upstream
+cable service class "resbasicus" activity-timeout  0
+cable service class "resbasicus" admission-timeout  200
+cable service class "resbasicus" grant-interval  0
+cable service class "resbasicus" grant-jitter  0
+cable service class "resbasicus" grant-size  0
+cable service class "resbasicus" grants-per-interval  0
+cable service class "resbasicus" max-burst  3044
+cable service class "resbasicus" max-concat-burst  1522
+cable service class "resbasicus" max-latency  0
+cable service class "resbasicus" max-rate  256000
+cable service class "resbasicus" min-packet-size  64
+cable service class "resbasicus" min-rate  0
+cable service class "resbasicus" poll-interval  250
+cable service class "resbasicus" poll-jitter  125
+cable service class "resbasicus" req-trans-policy  0x0
+cable service class "resbasicus" tos-overwrite  0xff 0x0
+cable service class "resbasicus" status activate
+cable service class "heanet2MbUS" priority  0
+cable service class "heanet2MbUS" sched-type best-effort
+cable service class "heanet2MbUS" upstream
+cable service class "heanet2MbUS" activity-timeout  0
+cable service class "heanet2MbUS" admission-timeout  200
+cable service class "heanet2MbUS" grant-interval  0
+cable service class "heanet2MbUS" grant-jitter  0
+cable service class "heanet2MbUS" grant-size  0
+cable service class "heanet2MbUS" grants-per-interval  0
+cable service class "heanet2MbUS" max-burst  3044
+cable service class "heanet2MbUS" max-concat-burst  1522
+cable service class "heanet2MbUS" max-latency  0
+cable service class "heanet2MbUS" max-rate  2097152
+cable service class "heanet2MbUS" min-packet-size  64
+cable service class "heanet2MbUS" min-rate  0
+cable service class "heanet2MbUS" poll-interval  250
+cable service class "heanet2MbUS" poll-jitter  125
+cable service class "heanet2MbUS" req-trans-policy  0x0
+cable service class "heanet2MbUS" tos-overwrite  0xff 0x0
+cable service class "heanet2MbUS" status activate
+cable service class "heanet11MbDS" priority  0
+!cable service class "heanet11MbDS" sched-type <other>
+cable service class "heanet11MbDS" downstream
+cable service class "heanet11MbDS" activity-timeout  0
+cable service class "heanet11MbDS" admission-timeout  200
+cable service class "heanet11MbDS" grant-interval  0
+cable service class "heanet11MbDS" grant-jitter  0
+cable service class "heanet11MbDS" grant-size  0
+cable service class "heanet11MbDS" grants-per-interval  0
+cable service class "heanet11MbDS" max-burst  3044
+cable service class "heanet11MbDS" max-concat-burst  0
+cable service class "heanet11MbDS" max-latency  0
+cable service class "heanet11MbDS" max-rate  11534336
+cable service class "heanet11MbDS" min-packet-size  64
+cable service class "heanet11MbDS" min-rate  0
+cable service class "heanet11MbDS" poll-interval  0
+cable service class "heanet11MbDS" poll-jitter  0
+cable service class "heanet11MbDS" req-trans-policy  0x0
+cable service class "heanet11MbDS" tos-overwrite  0x0 0x0
+cable service class "heanet11MbDS" status activate
+cable service class "heanet15MbDS" priority  0
+!cable service class "heanet15MbDS" sched-type <other>
+cable service class "heanet15MbDS" downstream
+cable service class "heanet15MbDS" activity-timeout  0
+cable service class "heanet15MbDS" admission-timeout  200
+cable service class "heanet15MbDS" grant-interval  0
+cable service class "heanet15MbDS" grant-jitter  0
+cable service class "heanet15MbDS" grant-size  0
+cable service class "heanet15MbDS" grants-per-interval  0
+cable service class "heanet15MbDS" max-burst  3044
+cable service class "heanet15MbDS" max-concat-burst  0
+cable service class "heanet15MbDS" max-latency  0
+cable service class "heanet15MbDS" max-rate  16777216
+cable service class "heanet15MbDS" min-packet-size  64
+cable service class "heanet15MbDS" min-rate  0
+cable service class "heanet15MbDS" poll-interval  0
+cable service class "heanet15MbDS" poll-jitter  0
+cable service class "heanet15MbDS" req-trans-policy  0x0
+cable service class "heanet15MbDS" tos-overwrite  0x0 0x0
+cable service class "heanet15MbDS" status activate
+!
+cable filter
+cable submgmt
+cable submgmt cpe ip filtering
+no cable submgmt default active
+cable submgmt default learnable
+cable submgmt default max-cpe 16
+cable submgmt default filter-group cm upstream 0
+cable submgmt default filter-group cm downstream 0
+cable submgmt default filter-group cpe upstream 0
+cable submgmt default filter-group cpe downstream 0
+no cable submgmt cpe ip aging 
+cable submgmt default cpe-ip-aging-interval 14400
+!
+!
+line console
+ length 24
+ width 80
+ timeout 900
+ monitor
+ no vt100-colours
+line ssh 0 3
+ length 24
+ width 80
+ timeout 300
+ no monitor
+ no vt100-colours
+line vty 0 3
+ length 24
+ width 90
+ timeout 900
+ no monitor
+ no vt100-colours
+!
+no ipdr
+ipdr filename "ipdr.xml.gz"
+ipdr login "anonymous"
+ipdr password "anonymous"
+!
+ntp server 10.1.1.51 interval 300
+ntp server 10.1.1.51 master
+!
+!
+exception auto-reboot 0
+exception 3212-monitor reset
+no exception cm-monitor reset
+exception cm-monitor min-cm-count 5
+exception cm-monitor min-idle-time 60
+exception 3140-monitor 0 reset
+exception 3140-monitor 0 mask 65483
+exception 3140-monitor 1 reset
+exception 3140-monitor 1 mask 65483
+exception 3140-monitor 2 reset
+exception 3140-monitor 2 mask 65483
+exception 3140-monitor 3 reset
+exception 3140-monitor 3 mask 65483
+!
+!
+ip ssh port 22
+ip ssh timeout 300
+ip ssh authentication-retries 3
+!
+phs-enable
+no cable max-qos-active-timeout
+cable pp-mp-drop-stat-interval 0
+!

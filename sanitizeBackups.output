@@ -1,0 +1,423 @@
+
+
+['knock1-14-11-15-10.cfg', 'knock1-14-11-16-10.cfg', 'knock1-14-12-24-14.cfg', 'knock1-14-12-25-10.cfg', 'knock1-14-12-26-10.cfg', 'knock1-14-12-27-10.cfg', 'knock1-14-12-28-10.cfg', 'knock1-14-12-29-10.cfg', 'knock1-14-12-30-10.cfg', 'knock1-14-12-31-10.cfg', 'knock1-14-12-31-12.cfg', 'knock1-14-12-31-15.cfg', 'knock1-15-01-01-10.cfg', 'knock1-15-01-02-10.cfg', 'knock1-15-01-02-12.cfg', 'knock1-15-01-02-13.cfg', 'knock1-15-01-02-16.cfg', 'knock1-15-01-03-10.cfg', 'knock1-15-01-04-10.cfg', 'knock1-15-01-05-10.cfg', 'knock1-15-01-06-10.cfg', 'knock1-15-01-07-10.cfg', 'knock1-15-01-08-10.cfg', 'knock1-15-01-09-10.cfg', 'knock1-15-01-10-10.cfg', 'knock1-15-01-11-10.cfg', 'knock1-15-01-12-10.cfg', 'knock1-15-01-13-10.cfg', 'knock1-15-01-14-10.cfg', 'knock1-15-01-15-10.cfg', 'knock1-15-01-16-10.cfg', 'knock1-15-01-17-10.cfg', 'knock1-15-01-18-10.cfg', 'knock1-15-01-19-10.cfg', 'knock1-15-01-20-10.cfg', 'knock1-15-01-21-10.cfg', 'knock1-15-01-22-10.cfg', 'knock1-15-01-23-10.cfg', 'knock1-15-01-24-10.cfg', 'knock1-15-01-25-10.cfg', 'knock1-15-01-26-10.cfg', 'knock1-15-01-27-10.cfg', 'knock1-15-01-28-10.cfg', 'knock1-15-01-29-10.cfg', 'knock1-15-01-30-10.cfg', 'knock1-15-01-31-10.cfg', 'knock1-15-02-01-10.cfg', 'knock1-15-02-02-10.cfg', 'knock1-15-02-03-10.cfg', 'knock1-15-02-04-10.cfg', 'knock1-15-02-05-10.cfg', 'knock1-15-02-06-10.cfg', 'knock1-15-02-07-10.cfg', 'knock1-15-02-08-10.cfg', 'knock1-15-02-09-10.cfg', 'knock1-15-02-10-10.cfg', 'knock1-15-02-11-10.cfg', 'knock1-15-02-12-10.cfg', 'knock1-15-02-13-10.cfg', 'knock1-15-02-14-10.cfg', 'knock1-15-02-15-10.cfg', 'knock1-15-02-16-10.cfg', 'knock1-15-02-17-10.cfg', 'knock1-15-02-18-10.cfg', 'knock1-15-02-19-10.cfg', 'knock1-15-02-20-10.cfg', 'knock1-15-02-21-10.cfg', 'knock1-15-02-22-10.cfg', 'knock1-15-02-23-10.cfg', 'knock1-15-02-24-10.cfg', 'knock1-15-02-25-10.cfg', 'knock1-15-02-26-10.cfg', 'knock1-15-02-27-10.cfg', 'knock1-15-02-28-10.cfg', 'knock1-15-03-01-10.cfg', 'knock1-15-03-02-10.cfg', 'knock1-15-03-03-10.cfg', 'knock1-15-03-04-10.cfg', 'knock1-15-03-05-10.cfg', 'knock1-15-03-06-10.cfg', 'knock1-15-03-07-10.cfg', 'knock1-15-03-08-10.cfg', 'knock1-15-03-09-10.cfg', 'knock1-15-03-10-10.cfg', 'knock1-15-03-11-10.cfg', 'knock1-15-03-12-10.cfg', 'knock1-15-03-13-10.cfg', 'knock1-15-03-14-10.cfg', 'knock1-15-03-15-10.cfg', 'knock1-15-03-16-10.cfg', 'knock1-15-03-17-10.cfg', 'knock1-15-03-18-10.cfg', 'knock1-15-03-19-10.cfg', 'knock1-15-03-20-10.cfg', 'knock1-15-03-21-10.cfg', 'knock1-15-03-22-10.cfg', 'knock1-15-03-23-10.cfg', 'knock1-15-03-24-10.cfg', 'knock1-15-03-25-10.cfg', 'knock1-15-03-26-10.cfg']
+listLength:  100
+
+Main file:  knock1-14-11-15-10.cfg
+Compare result knock1-14-11-15-10.cfg with knock1-14-11-16-10.cfg True
+	knock1-14-11-16-10.cfg flagged for deletion
+
+Compare result knock1-14-11-15-10.cfg with knock1-14-12-24-14.cfg False
+	knock1-14-12-24-14.cfg is different to  knock1-14-11-15-10.cfg
+	knock1-14-12-24-14.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-25-10.cfg True
+	knock1-14-12-25-10.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-26-10.cfg True
+	knock1-14-12-26-10.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-27-10.cfg True
+	knock1-14-12-27-10.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-28-10.cfg True
+	knock1-14-12-28-10.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-29-10.cfg True
+	knock1-14-12-29-10.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-30-10.cfg True
+	knock1-14-12-30-10.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-31-10.cfg True
+	knock1-14-12-31-10.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-31-12.cfg True
+	knock1-14-12-31-12.cfg flagged for deletion
+
+Compare result knock1-14-12-24-14.cfg with knock1-14-12-31-15.cfg False
+	knock1-14-12-31-15.cfg is different to  knock1-14-12-24-14.cfg
+	knock1-14-12-31-15.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-14-12-31-15.cfg with knock1-15-01-01-10.cfg False
+	knock1-15-01-01-10.cfg is different to  knock1-14-12-31-15.cfg
+	knock1-15-01-01-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-01-01-10.cfg with knock1-15-01-02-10.cfg True
+	knock1-15-01-02-10.cfg flagged for deletion
+
+Compare result knock1-15-01-01-10.cfg with knock1-15-01-02-12.cfg False
+	knock1-15-01-02-12.cfg is different to  knock1-15-01-01-10.cfg
+	knock1-15-01-02-12.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-01-02-12.cfg with knock1-15-01-02-13.cfg True
+	knock1-15-01-02-13.cfg flagged for deletion
+
+Compare result knock1-15-01-02-12.cfg with knock1-15-01-02-16.cfg False
+	knock1-15-01-02-16.cfg is different to  knock1-15-01-02-12.cfg
+	knock1-15-01-02-16.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-01-02-16.cfg with knock1-15-01-03-10.cfg True
+	knock1-15-01-03-10.cfg flagged for deletion
+
+Compare result knock1-15-01-02-16.cfg with knock1-15-01-04-10.cfg False
+	knock1-15-01-04-10.cfg is different to  knock1-15-01-02-16.cfg
+	knock1-15-01-04-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-01-04-10.cfg with knock1-15-01-05-10.cfg True
+	knock1-15-01-05-10.cfg flagged for deletion
+
+Compare result knock1-15-01-04-10.cfg with knock1-15-01-06-10.cfg False
+	knock1-15-01-06-10.cfg is different to  knock1-15-01-04-10.cfg
+	knock1-15-01-06-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-01-06-10.cfg with knock1-15-01-07-10.cfg True
+	knock1-15-01-07-10.cfg flagged for deletion
+
+Compare result knock1-15-01-06-10.cfg with knock1-15-01-08-10.cfg True
+	knock1-15-01-08-10.cfg flagged for deletion
+
+Compare result knock1-15-01-06-10.cfg with knock1-15-01-09-10.cfg True
+	knock1-15-01-09-10.cfg flagged for deletion
+
+Compare result knock1-15-01-06-10.cfg with knock1-15-01-10-10.cfg True
+	knock1-15-01-10-10.cfg flagged for deletion
+
+Compare result knock1-15-01-06-10.cfg with knock1-15-01-11-10.cfg True
+	knock1-15-01-11-10.cfg flagged for deletion
+
+Compare result knock1-15-01-06-10.cfg with knock1-15-01-12-10.cfg True
+	knock1-15-01-12-10.cfg flagged for deletion
+
+Compare result knock1-15-01-06-10.cfg with knock1-15-01-13-10.cfg False
+	knock1-15-01-13-10.cfg is different to  knock1-15-01-06-10.cfg
+	knock1-15-01-13-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-14-10.cfg True
+	knock1-15-01-14-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-15-10.cfg True
+	knock1-15-01-15-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-16-10.cfg True
+	knock1-15-01-16-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-17-10.cfg True
+	knock1-15-01-17-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-18-10.cfg True
+	knock1-15-01-18-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-19-10.cfg True
+	knock1-15-01-19-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-20-10.cfg True
+	knock1-15-01-20-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-21-10.cfg True
+	knock1-15-01-21-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-22-10.cfg True
+	knock1-15-01-22-10.cfg flagged for deletion
+
+Compare result knock1-15-01-13-10.cfg with knock1-15-01-23-10.cfg False
+	knock1-15-01-23-10.cfg is different to  knock1-15-01-13-10.cfg
+	knock1-15-01-23-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-24-10.cfg True
+	knock1-15-01-24-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-25-10.cfg True
+	knock1-15-01-25-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-26-10.cfg True
+	knock1-15-01-26-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-27-10.cfg True
+	knock1-15-01-27-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-28-10.cfg True
+	knock1-15-01-28-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-29-10.cfg True
+	knock1-15-01-29-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-30-10.cfg True
+	knock1-15-01-30-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-01-31-10.cfg True
+	knock1-15-01-31-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-02-01-10.cfg True
+	knock1-15-02-01-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-02-02-10.cfg True
+	knock1-15-02-02-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-02-03-10.cfg True
+	knock1-15-02-03-10.cfg flagged for deletion
+
+Compare result knock1-15-01-23-10.cfg with knock1-15-02-04-10.cfg False
+	knock1-15-02-04-10.cfg is different to  knock1-15-01-23-10.cfg
+	knock1-15-02-04-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-02-04-10.cfg with knock1-15-02-05-10.cfg True
+	knock1-15-02-05-10.cfg flagged for deletion
+
+Compare result knock1-15-02-04-10.cfg with knock1-15-02-06-10.cfg True
+	knock1-15-02-06-10.cfg flagged for deletion
+
+Compare result knock1-15-02-04-10.cfg with knock1-15-02-07-10.cfg True
+	knock1-15-02-07-10.cfg flagged for deletion
+
+Compare result knock1-15-02-04-10.cfg with knock1-15-02-08-10.cfg True
+	knock1-15-02-08-10.cfg flagged for deletion
+
+Compare result knock1-15-02-04-10.cfg with knock1-15-02-09-10.cfg True
+	knock1-15-02-09-10.cfg flagged for deletion
+
+Compare result knock1-15-02-04-10.cfg with knock1-15-02-10-10.cfg True
+	knock1-15-02-10-10.cfg flagged for deletion
+
+Compare result knock1-15-02-04-10.cfg with knock1-15-02-11-10.cfg False
+	knock1-15-02-11-10.cfg is different to  knock1-15-02-04-10.cfg
+	knock1-15-02-11-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-02-11-10.cfg with knock1-15-02-12-10.cfg False
+	knock1-15-02-12-10.cfg is different to  knock1-15-02-11-10.cfg
+	knock1-15-02-12-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-13-10.cfg True
+	knock1-15-02-13-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-14-10.cfg True
+	knock1-15-02-14-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-15-10.cfg True
+	knock1-15-02-15-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-16-10.cfg True
+	knock1-15-02-16-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-17-10.cfg True
+	knock1-15-02-17-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-18-10.cfg True
+	knock1-15-02-18-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-19-10.cfg True
+	knock1-15-02-19-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-20-10.cfg True
+	knock1-15-02-20-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-21-10.cfg True
+	knock1-15-02-21-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-22-10.cfg True
+	knock1-15-02-22-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-23-10.cfg True
+	knock1-15-02-23-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-24-10.cfg True
+	knock1-15-02-24-10.cfg flagged for deletion
+
+Compare result knock1-15-02-12-10.cfg with knock1-15-02-25-10.cfg False
+	knock1-15-02-25-10.cfg is different to  knock1-15-02-12-10.cfg
+	knock1-15-02-25-10.cfg will be preserved and has become the new file to compare to for remaining files
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-02-26-10.cfg True
+	knock1-15-02-26-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-02-27-10.cfg True
+	knock1-15-02-27-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-02-28-10.cfg True
+	knock1-15-02-28-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-01-10.cfg True
+	knock1-15-03-01-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-02-10.cfg True
+	knock1-15-03-02-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-03-10.cfg True
+	knock1-15-03-03-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-04-10.cfg True
+	knock1-15-03-04-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-05-10.cfg True
+	knock1-15-03-05-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-06-10.cfg True
+	knock1-15-03-06-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-07-10.cfg True
+	knock1-15-03-07-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-08-10.cfg True
+	knock1-15-03-08-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-09-10.cfg True
+	knock1-15-03-09-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-10-10.cfg True
+	knock1-15-03-10-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-11-10.cfg True
+	knock1-15-03-11-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-12-10.cfg True
+	knock1-15-03-12-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-13-10.cfg True
+	knock1-15-03-13-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-14-10.cfg True
+	knock1-15-03-14-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-15-10.cfg True
+	knock1-15-03-15-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-16-10.cfg True
+	knock1-15-03-16-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-17-10.cfg True
+	knock1-15-03-17-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-18-10.cfg True
+	knock1-15-03-18-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-19-10.cfg True
+	knock1-15-03-19-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-20-10.cfg True
+	knock1-15-03-20-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-21-10.cfg True
+	knock1-15-03-21-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-22-10.cfg True
+	knock1-15-03-22-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-23-10.cfg True
+	knock1-15-03-23-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-24-10.cfg True
+	knock1-15-03-24-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-25-10.cfg True
+	knock1-15-03-25-10.cfg flagged for deletion
+
+Compare result knock1-15-02-25-10.cfg with knock1-15-03-26-10.cfg True
+	knock1-15-03-26-10.cfg flagged for deletion
+
+-----------------------------------------------
+                 REPORT                        
+-----------------------------------------------
+
+For deletion
+knock1-14-11-16-10.cfg
+knock1-14-12-25-10.cfg
+knock1-14-12-26-10.cfg
+knock1-14-12-27-10.cfg
+knock1-14-12-28-10.cfg
+knock1-14-12-29-10.cfg
+knock1-14-12-30-10.cfg
+knock1-14-12-31-10.cfg
+knock1-14-12-31-12.cfg
+knock1-15-01-02-10.cfg
+knock1-15-01-02-13.cfg
+knock1-15-01-03-10.cfg
+knock1-15-01-05-10.cfg
+knock1-15-01-07-10.cfg
+knock1-15-01-08-10.cfg
+knock1-15-01-09-10.cfg
+knock1-15-01-10-10.cfg
+knock1-15-01-11-10.cfg
+knock1-15-01-12-10.cfg
+knock1-15-01-14-10.cfg
+knock1-15-01-15-10.cfg
+knock1-15-01-16-10.cfg
+knock1-15-01-17-10.cfg
+knock1-15-01-18-10.cfg
+knock1-15-01-19-10.cfg
+knock1-15-01-20-10.cfg
+knock1-15-01-21-10.cfg
+knock1-15-01-22-10.cfg
+knock1-15-01-24-10.cfg
+knock1-15-01-25-10.cfg
+knock1-15-01-26-10.cfg
+knock1-15-01-27-10.cfg
+knock1-15-01-28-10.cfg
+knock1-15-01-29-10.cfg
+knock1-15-01-30-10.cfg
+knock1-15-01-31-10.cfg
+knock1-15-02-01-10.cfg
+knock1-15-02-02-10.cfg
+knock1-15-02-03-10.cfg
+knock1-15-02-05-10.cfg
+knock1-15-02-06-10.cfg
+knock1-15-02-07-10.cfg
+knock1-15-02-08-10.cfg
+knock1-15-02-09-10.cfg
+knock1-15-02-10-10.cfg
+knock1-15-02-13-10.cfg
+knock1-15-02-14-10.cfg
+knock1-15-02-15-10.cfg
+knock1-15-02-16-10.cfg
+knock1-15-02-17-10.cfg
+knock1-15-02-18-10.cfg
+knock1-15-02-19-10.cfg
+knock1-15-02-20-10.cfg
+knock1-15-02-21-10.cfg
+knock1-15-02-22-10.cfg
+knock1-15-02-23-10.cfg
+knock1-15-02-24-10.cfg
+knock1-15-02-26-10.cfg
+knock1-15-02-27-10.cfg
+knock1-15-02-28-10.cfg
+knock1-15-03-01-10.cfg
+knock1-15-03-02-10.cfg
+knock1-15-03-03-10.cfg
+knock1-15-03-04-10.cfg
+knock1-15-03-05-10.cfg
+knock1-15-03-06-10.cfg
+knock1-15-03-07-10.cfg
+knock1-15-03-08-10.cfg
+knock1-15-03-09-10.cfg
+knock1-15-03-10-10.cfg
+knock1-15-03-11-10.cfg
+knock1-15-03-12-10.cfg
+knock1-15-03-13-10.cfg
+knock1-15-03-14-10.cfg
+knock1-15-03-15-10.cfg
+knock1-15-03-16-10.cfg
+knock1-15-03-17-10.cfg
+knock1-15-03-18-10.cfg
+knock1-15-03-19-10.cfg
+knock1-15-03-20-10.cfg
+knock1-15-03-21-10.cfg
+knock1-15-03-22-10.cfg
+knock1-15-03-23-10.cfg
+knock1-15-03-24-10.cfg
+knock1-15-03-25-10.cfg
+knock1-15-03-26-10.cfg
+
+For preservation
+knock1-14-12-24-14.cfg
+knock1-14-12-31-15.cfg
+knock1-15-01-01-10.cfg
+knock1-15-01-02-12.cfg
+knock1-15-01-02-16.cfg
+knock1-15-01-04-10.cfg
+knock1-15-01-06-10.cfg
+knock1-15-01-13-10.cfg
+knock1-15-01-23-10.cfg
+knock1-15-02-04-10.cfg
+knock1-15-02-11-10.cfg
+knock1-15-02-12-10.cfg
+knock1-15-02-25-10.cfg
+
